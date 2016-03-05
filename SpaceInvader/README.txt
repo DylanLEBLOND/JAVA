@@ -1,0 +1,1 @@
+Slick Instal : http://www.cse.wustl.edu/~gazihan/teaching/11fall/se320/programming/installSlick.html
