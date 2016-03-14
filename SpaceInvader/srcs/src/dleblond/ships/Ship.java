@@ -1,9 +1,5 @@
 package dleblond.ships;
 
-import java.util.ArrayList;
-
-import dleblond.guns.Gun;
-
 public class Ship implements IShip
 {
 	public int					x;
@@ -13,8 +9,6 @@ public class Ship implements IShip
 	protected int				hp;
 	protected int 				ep;
 	protected Boolean			alive;
-	protected ArrayList<Gun>	guns;
-	protected int				currentWeap;
 	protected int				maxhp;
 	protected int				maxep;
 	protected String 			name;
@@ -31,13 +25,10 @@ public class Ship implements IShip
 		this.maxhp = maxhp;
 		this.ep = maxep;
 		this.maxep = maxep;
-		this.guns = new ArrayList<Gun>();
-		this.guns.add(new Gun("default", 10, 1, 10));
-		this.currentWeap = 0;
 	}
 	
 	//Getters
-	public Boolean IsAlive()
+	public Boolean isAlive()
 	{
 		return (this.alive);
 	}
@@ -62,16 +53,11 @@ public class Ship implements IShip
 		return (this.ep);
 	}
 	
-	public ArrayList<Gun> getGuns()
-	{
-		return (this.guns);
-	}
-	
 	//Ship's Function
 	
 	public void checkCollision(Ship ship)
-	{	
-		if (!this.alive || !ship.IsAlive())
+	{
+		if (!this.alive || !ship.isAlive())
 			return ;
 		if (((this.x >= ship.x && this.x <= ship.x + ship.width) ||
 				(this.x + this.width >= ship.x && this.x + this.width <= ship.x + ship.width))
@@ -115,21 +101,5 @@ public class Ship implements IShip
 		this.ep += amount;
 		if (this.ep > this.maxep)
 			this.ep = this.maxep;
-	}
-	
-	public void addGun(Gun newGun)
-	{
-		if (!this.alive)
-			return ;
-		this.guns.add(newGun);
-	}
-	
-	public void	changeGun(int number)
-	{
-		if (!this.alive)
-			return ;
-		if (number <= 0 || number > this.guns.size())
-			return ;
-		this.currentWeap = number - 1;
 	}
 }
